@@ -1,6 +1,6 @@
 from os import getenv
 
-import telebot
+import telebot  # type: ignore
 
 bot = telebot.TeleBot(getenv("TELEBOT_API_KEY", default=""))
 
