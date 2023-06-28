@@ -8,6 +8,9 @@ class User(Base):
     chat_id = Column(Integer, primary_key=True)
     tasks = relationship("Todoes", back_populates="user")
 
+    def __repr__(self):
+        return f"User(chat_id={self.chat_id})"
+
 
 class Todoes(Base):
     __tablename__ = "todoes"

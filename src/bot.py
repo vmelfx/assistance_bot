@@ -8,28 +8,17 @@ bot = telebot.TeleBot(getenv("TELEBOT_API_KEY", default=""))
 create_db()
 
 
-def session_scope(func):
-    session = SessionLocal()
-
-    def wrapper(*args, **kwargs):
-        try:
-            result = func(session, *args, **kwargs)
-            session.commit()
-            return result
-        except Exception as e:
-            session.rollback()
-            raise e
-        finally:
-            session.close()
-
-    return wrapper
-
-
 @bot.message_handler(commands=["start"])
-@session_scope
-def start_handler(session, message):
-    user = User(chat_id=f"{message.chat.id}")
-    session.add(user)
+def start_handler(message):
+    with SessionLocal() as session:
+        try:
+            if not session.query(User).filter(User.chat_id == message.chat.id).first():
+                session.add(User(chat_id=f"{message.chat.id}"))
+        except Exception:
+            session.rollback()
+            raise
+        else:
+            session.commit()
     bot.send_message(
         message.chat.id,
         f"Hello, {message.from_user.first_name} {message.from_user.last_name}!",
@@ -38,7 +27,21 @@ def start_handler(session, message):
 
 @bot.message_handler(content_types=["text"])
 def create_todo_handler(message):
-    pass
+    with SessionLocal() as session:
+        user = session.query(User).filter(User.chat_id == message.chat.id).first()
+        try:
+            session.add(
+                Todoes(
+                    user=user,
+                    description=message.text,
+                )
+            )
+        except Exception:
+            session.rollback()
+            raise
+        else:
+            session.commit()
+        bot.send_message(message.chat.id, "Your todo was saved")
 
 
 bot.infinity_polling()
