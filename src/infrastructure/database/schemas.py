@@ -1,6 +1,12 @@
-from database.database import Base
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import declarative_base, relationship
+from src.infrastructure.database.services.session import engine
+
+Base = declarative_base()
+
+
+def create_db():
+    Base.metadata.create_all(bind=engine)
 
 
 class User(Base):
