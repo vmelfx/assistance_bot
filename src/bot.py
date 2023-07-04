@@ -1,10 +1,7 @@
-from os import getenv
+from src.application.database import transaction
+from src.infrastructure.database.schemas import Todoes, User, create_db
+from src.infrastructure.telegram import bot
 
-import telebot  # type: ignore
-from application.database import transaction
-from infrastructure.database.schemas import Todoes, User, create_db
-
-bot = telebot.TeleBot(getenv("TELEBOT_API_KEY", default=""))
 create_db()
 
 

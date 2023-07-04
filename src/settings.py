@@ -9,4 +9,4 @@ DATABASE_URL = f"sqlite:///{ROOT_FOLDER}/{DATABASE_NAME}"
 
 
 # Telegram-related configurations
-# TELEGRAM_BOT_API_KEY
+TELEGRAM_BOT_API_KEY: str | None = getenv("TELEGRAM_BOT_API_KEY")
