@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import declarative_base, relationship
 from src.infrastructure.database.services.session import engine
 
@@ -24,8 +24,8 @@ class Todoes(Base):
     task_id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("user.chat_id"))
     user = relationship("User", back_populates="tasks")
-    title = Column(String)
-    description = Column(String)
+    date = Column("creation_date", Date)
+    task_description = Column(String)
     priority = Column(Integer)
     complete = Column(Boolean, default=False)
 
