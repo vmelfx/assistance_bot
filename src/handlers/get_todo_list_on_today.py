@@ -5,7 +5,6 @@ from src.infrastructure.database.schemas import Todoes, User
 from src.infrastructure.telegram import bot
 
 
-@bot.message_handler(commands=["today", "t"])
 @transaction
 def get_todo_list_on_today(session, message):
     user = session.query(User).filter(User.chat_id == message.chat.id).first()

@@ -3,7 +3,6 @@ from src.infrastructure.database.schemas import User
 from src.infrastructure.telegram import bot
 
 
-@bot.message_handler(commands=["start"])
 @transaction
 def start_handler(session, message):
     if not session.query(User).filter(User.chat_id == message.chat.id).first():

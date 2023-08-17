@@ -3,7 +3,7 @@ from src.infrastructure.database.schemas import Todoes
 from src.infrastructure.telegram import bot
 
 
-@bot.message_handler(regexp=r"\d+ done")
+# @bot.message_handler(regexp=r"\d+ done")
 @transaction
 def mark_as_done(session, message):
     received_task_id = message.text.split(" ")[0]
