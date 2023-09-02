@@ -24,8 +24,15 @@ def get_todo_list_on_today(session, message):
         else:
             formatted_message.append(f"<b>{todo.task_id}. {todo.task_description}</b>\n")
 
-    bot.send_message(
-        message.chat.id,
-        "".join(formatted_message),
-        parse_mode="HTML",
-    )
+    if formatted_message:
+        bot.send_message(
+            message.chat.id,
+            "".join(formatted_message),
+            parse_mode="HTML",
+        )
+    else:
+        bot.send_message(
+            message.chat.id,
+            "There is no tasks for today.",
+            parse_mode="HTML",
+        )

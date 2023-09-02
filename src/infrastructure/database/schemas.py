@@ -31,6 +31,6 @@ class Todoes(Base):
 
     def __repr__(self):
         return (
-            f"Tasks [ID: {self.task_id}, User: {self.user_id}, Title: {self.title},"
-            f"Description: {self.description}, Priority: {self.priority}, Completed: {self.complete}]",
+            f"Tasks [ID: {self.task_id}, User: {self.user_id}, "
+            f"Description: {self.task_description}, Priority: {self.priority}, Completed: {self.complete}]"
         )

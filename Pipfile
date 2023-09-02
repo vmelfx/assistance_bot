@@ -11,6 +11,7 @@ alembic = "~=1.11.1"
 python-dateutil = "*"
 celery = "==5.3.1"
 redis = "==5.0.0"
+pydantic = "==2.3.0"
 
 
 

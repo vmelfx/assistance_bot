@@ -1,8 +1,13 @@
 import requests
-from celery import Celery
+from src.application.celery.celeryconfig import app
 from src.settings import TELEGRAM_BOT_API_KEY
 
-app = Celery("vmelfx_assistant_bot")
+app.conf.beat_schedule = {
+    "periodic-task": {
+        "task": "send_todo",
+        "schedule": 30,
+    },
+}
 
 
 @app.task(name="send_todo")
