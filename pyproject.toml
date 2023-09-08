@@ -1,6 +1,6 @@
 [tool.black]
 target-version = ['py310']
-line-length = 120
+line-length = 89
 skip-string-normalization = true
 exclude = '''
 (
