@@ -1,15 +1,10 @@
 from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
-from sqlalchemy.orm import declarative_base, relationship
-from src.infrastructure.database.services.session import engine
+from sqlalchemy.orm import declarative_base, relationship  # type: ignore
 
 Base = declarative_base()
 
 
-def create_db():
-    Base.metadata.create_all(bind=engine)
-
-
-class User(Base):
+class User(Base):  # type: ignore
     __tablename__ = "user"
     chat_id = Column(Integer, primary_key=True)
     tasks = relationship("Todoes", back_populates="user")
@@ -18,7 +13,7 @@ class User(Base):
         return f"User(chat_id={self.chat_id})"
 
 
-class Todoes(Base):
+class Todoes(Base):  # type: ignore
     __tablename__ = "todoes"
 
     task_id = Column(Integer, primary_key=True)

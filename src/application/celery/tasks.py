@@ -36,6 +36,6 @@ def send_undone_todoes(session):
         # Send notification to the user
         notification_message = "You have undone tasks. Here's your task list:\n"
         for task in tasks:
-            notification_message += f"{task.description}\n"
+            notification_message += f"{task.task_id}. {task.description}\n"
 
         bot.send_message(user.chat_id, notification_message)

@@ -20,7 +20,9 @@ def get_todo_list_on_today(session, message):
     formatted_message = []
     for todo in todoes:
         if todo.complete:
-            formatted_message.append(f"<b><s>{todo.task_id}. {todo.task_description}</s></b>\n")
+            formatted_message.append(
+                f"<b><s>{todo.task_id}. {todo.task_description}</s></b>\n"
+            )
         else:
             formatted_message.append(f"<b>{todo.task_id}. {todo.task_description}</b>\n")
 

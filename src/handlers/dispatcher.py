@@ -4,7 +4,7 @@ from src.handlers.mark_as_done import mark_as_done
 from src.handlers.services.check_mark_as_done import is_mark_as_done_command
 from src.handlers.start_handler import start_handler
 from src.infrastructure.telegram import bot
-from telebot import types
+from telebot import types  # type: ignore
 
 COMMANDS_HANDLERS = {
     "/start": start_handler,

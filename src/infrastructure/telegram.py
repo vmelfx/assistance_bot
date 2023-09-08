@@ -3,7 +3,7 @@ from contextlib import suppress
 from importlib import import_module
 
 from src.settings import SRC_FOLDER, TELEGRAM_BOT_API_KEY
-from telebot import TeleBot
+from telebot import TeleBot  # type: ignore
 
 
 def create_bot():
