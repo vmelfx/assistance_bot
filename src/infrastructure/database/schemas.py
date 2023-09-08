@@ -7,7 +7,7 @@ Base = declarative_base()
 class User(Base):  # type: ignore
     __tablename__ = "user"
     chat_id = Column(Integer, primary_key=True)
-    tasks = relationship("Todoes", back_populates="user")
+    tasks = relationship("Todoes", back_populates="user")  # type: ignore[var-annotated]
 
     def __repr__(self):
         return f"User(chat_id={self.chat_id})"
@@ -18,7 +18,7 @@ class Todoes(Base):  # type: ignore
 
     task_id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("user.chat_id"))
-    user = relationship("User", back_populates="tasks")
+    user = relationship("User", back_populates="tasks")  # type: ignore[var-annotated]
     date = Column("creation_date", Date)
     task_description = Column(String)
     priority = Column(Integer)
