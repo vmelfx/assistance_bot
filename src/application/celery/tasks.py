@@ -7,7 +7,6 @@ from src.infrastructure.telegram import bot
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
-    # Calls test('hello') every 10 seconds.
     sender.add_periodic_task(30.0, send_undone_todoes.s(), name='add every 10')
 
 
