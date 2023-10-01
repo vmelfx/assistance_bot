@@ -22,4 +22,5 @@ __pycache__/
 # VScode
 .vscode/
 
+# Celery cache
 /celerybeat-schedule
